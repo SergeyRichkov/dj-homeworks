@@ -1,6 +1,5 @@
 from collections import Counter
-
-from django.shortcuts import render_to_response
+from django.shortcuts import render, reverse
 
 # Для отладки механизма ab-тестирования используйте эти счетчики
 # в качестве хранилища количества показов и количества переходов.
@@ -11,22 +10,38 @@ counter_click = Counter()
 
 
 def index(request):
-    # Реализуйте логику подсчета количества переходов с лендига по GET параметру from-landing
-    return render_to_response('index.html')
+    template_name = 'home.html'
+    pages = {
+        'Вариант A': reverse('landing') + '?ab-test-arg=original',
+        'Вариант B': reverse('landing') + '?ab-test-arg=test',
+    }
+
+    context = {
+        'pages': pages
+    }
+    param = request.GET.get('from-landing', '')
+    if param == 'original':
+        counter_click[param] += 1
+    elif param == 'test':
+        counter_click[param] += 1
+    return render(request, template_name, context)
 
 
 def landing(request):
-    # Реализуйте дополнительное отображение по шаблону app/landing_alternate.html
-    # в зависимости от GET параметра ab-test-arg
-    # который может принимать значения original и test
-    # Так же реализуйте логику подсчета количества показов
-    return render_to_response('landing.html')
+    param = request.GET.get('ab-test-arg', '')
+    counter_show[param] += 1
+    if param == 'original':
+        print(counter_show)
+        return render(request, 'landing.html', counter_show)
+    elif param == 'test':
+        print(counter_show)
+        return render(request, 'landing_alternate.html', counter_show)
 
 
 def stats(request):
-    # Реализуйте логику подсчета отношения количества переходов к количеству показов страницы
-    # Для вывода результат передайте в следующем формате:
-    return render_to_response('stats.html', context={
-        'test_conversion': 0.5,
-        'original_conversion': 0.4,
+    test_conv = counter_click['test'] / counter_show['test']
+    origin_conv = counter_click['original'] / counter_show['original']
+    return render(request, 'stats.html', context={
+        'test_conversion': test_conv,
+        'original_conversion': origin_conv,
     })
