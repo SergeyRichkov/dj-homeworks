@@ -100,6 +100,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+INFLATION_CSV = os.path.join(BASE_DIR, 'inflation_russia.csv')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
