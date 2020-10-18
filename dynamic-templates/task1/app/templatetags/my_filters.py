@@ -18,3 +18,5 @@ def background_paint(value):
     else:
         color = 'white'
     return color
+
+

@@ -26,21 +26,32 @@
     <table >
       <thead>
         <tr>
+          <th>Год</th>
           {% for month in title_row %}
           <th>
             {{ month }}
           </th>
           {% endfor %}
+          <th>Суммарная</th>
         </tr>
       </thead>
       <tbody>
-        {% for year in years %}
-        <tr>
-          {% for row in year %}
-            <td style="background-color: {{row|background_paint}}"> {{ row|default:"-" }}</td>
+
+      {% for row in years %}
+      <tr>
+
+             <td>
+<!--               {% for ggg in c %}-->
+               {% cycle ggg фильтр заменяющий  , на пробел 'kkk' %}
+<!--               {% endfor %}-->
+              </td>
+
+          {% for cell in row %}
+           <td style="background-color: {{cell|background_paint}}"> {{ cell|default:"-" }}</td>
           {% endfor %}
-        </tr>
         {% endfor %}
+      </tr>
+
 
       </tbody>
     </table>
