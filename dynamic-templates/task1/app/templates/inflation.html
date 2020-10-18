@@ -20,39 +20,39 @@
       <div class="row">
         <h1>Инфляция в России</h1>
         <div class>
-        
         <div class="container">
   <div class="row">
     <table >
       <thead>
         <tr>
-          <th>Год</th>
           {% for month in title_row %}
           <th>
             {{ month }}
           </th>
           {% endfor %}
-          <th>Суммарная</th>
         </tr>
       </thead>
       <tbody>
 
-      {% for row in years %}
+      {% for row in inflation_info %}
+
       <tr>
-
-             <td>
-<!--               {% for ggg in c %}-->
-               {% cycle ggg фильтр заменяющий  , на пробел 'kkk' %}
-<!--               {% endfor %}-->
-              </td>
-
-          {% for cell in row %}
-           <td style="background-color: {{cell|background_paint}}"> {{ cell|default:"-" }}</td>
-          {% endfor %}
+        <td style="background-color: {{row.Year}}"> {{ row.Year|default:"-" }}</td>
+        <td style="background-color: {{row.Jan|background_paint}}"> {{ row.Jan|default:"-" }}</td>
+        <td style="background-color: {{row.Feb|background_paint}}"> {{ row.Feb|default:"-" }}</td>
+        <td style="background-color: {{row.Mar|background_paint}}"> {{ row.Mar|default:"-" }}</td>
+        <td style="background-color: {{row.Apr|background_paint}}"> {{ row.Apr|default:"-" }}</td>
+        <td style="background-color: {{row.May|background_paint}}"> {{ row.May|default:"-" }}</td>
+        <td style="background-color: {{row.Jun|background_paint}}"> {{ row.Jun|default:"-" }}</td>
+        <td style="background-color: {{row.Jul|background_paint}}"> {{ row.Jul|default:"-" }}</td>
+        <td style="background-color: {{row.Aug|background_paint}}"> {{ row.Aug|default:"-" }}</td>
+        <td style="background-color: {{row.Sep|background_paint}}"> {{ row.Sep|default:"-" }}</td>
+        <td style="background-color: {{row.Oct|background_paint}}"> {{ row.Oct|default:"-" }}</td>
+        <td style="background-color: {{row.Nov|background_paint}}"> {{ row.Nov|default:"-" }}</td>
+        <td style="background-color: {{row.Dec|background_paint}}"> {{ row.Dec|default:"-" }}</td>
+        <td style="background-color: grey"> {{ row.Summ|default:"-" }}</td>
         {% endfor %}
       </tr>
-
-
       </tbody>
     </table>
 

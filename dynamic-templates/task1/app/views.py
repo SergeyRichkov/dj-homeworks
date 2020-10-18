@@ -16,28 +16,21 @@ def inflation_view(request):
             inflation_table.append(row[1:-1])
         csvfile.seek(0)
         for row2 in dict_reader:
-            inflation_info.append({'Year': row2['Год'], 'Summ': row2['Суммарная']})
+            inflation_info.append({
+                'Year': row2['Год'],
+                'Jan': row2['Янв'], 'Feb': row2['Фев'],'Mar': row2['Мар'],
+                'Apr': row2['Апр'], 'May': row2['Май'],'Jun': row2['Июн'],
+                'Jul': row2['Июл'], 'Aug': row2['Авг'],'Sep': row2['Сен'],
+                'Oct': row2['Окт'], 'Nov': row2['Ноя'],'Dec': row2['Дек'],
+                'Summ': row2['Суммарная']})
 
 
-    title_row = title_iflation_row[0][1:-1]
+    title_row = title_iflation_row[0]
     years = inflation_table[1:]
-    a = []
-    b = []
-    c = []
-    for abc in inflation_info:
-        a.append(abc['Year'])
-        b.append(abc['Summ'])
-
-    c = [a, b]
-    print(1111111111, c)
-
-
 
     context = {'title_row': title_row,
                'years': years,
-               'inflation_info': inflation_info,
-               'c': c
-                # 'inflation_of_year': inflation_of_years
+               'inflation_info': inflation_info
                }
 
     return render(request, template_name,
