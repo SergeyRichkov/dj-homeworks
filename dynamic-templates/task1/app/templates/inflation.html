@@ -17,13 +17,10 @@
 
   <body>
     {% block content %}
-      <div class="row">
         <h1>Инфляция в России</h1>
-        <div class>
-        <div class="container">
-  <div class="row">
-    <table >
-      <thead>
+
+    <table>
+      <thead >
         <tr>
           {% for month in title_row %}
           <th>
@@ -56,11 +53,6 @@
       </tbody>
     </table>
 
-  </div>
-</div>
-
-        </div>
-      </div>
     {% endblock %}
 
   </body>
