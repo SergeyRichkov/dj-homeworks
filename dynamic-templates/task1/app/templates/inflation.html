@@ -1,34 +1,27 @@
 {% load my_filters%}
 
-<!DOCTYPE html>{% load static %}
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Инфляция в России</title>
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+<!DOCTYPE html>
+<head>
 
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Инфляция в России</title>
 
   </head>
-
   <body>
-    {% block content %}
-        <h1>Инфляция в России</h1>
+  <h1 style="font: 50px dayton">Инфляция в России</h1>
 
-    <table>
+
+    <table width="100%"  style="font: 24px chicago;" cellpadding="5" rules="rows"  >
       <thead >
         <tr>
           {% for month in title_row %}
-          <th>
+          <th align="left" >
             {{ month }}
           </th>
           {% endfor %}
         </tr>
       </thead>
+
+
       <tbody>
 
       {% for row in inflation_info %}
@@ -47,13 +40,13 @@
         <td style="background-color: {{row.Oct|background_paint}}"> {{ row.Oct|default:"-" }}</td>
         <td style="background-color: {{row.Nov|background_paint}}"> {{ row.Nov|default:"-" }}</td>
         <td style="background-color: {{row.Dec|background_paint}}"> {{ row.Dec|default:"-" }}</td>
-        <td style="background-color: grey"> {{ row.Summ|default:"-" }}</td>
-        {% endfor %}
+        <td style="background-color: lightgrey"> {{ row.Summ|default:"-" }}</td>
       </tr>
+
+      {% endfor %}
       </tbody>
     </table>
-
-    {% endblock %}
-
-  </body>
+</div>
+  </div>
+    </body>
 </html>
